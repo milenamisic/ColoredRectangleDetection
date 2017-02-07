@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Prepoznavanje pravougaonika</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Prepoznavanje pravougaonika</h1>
+      <p>Ovaj program se oslanja na rad OpenCV biblioteke, kako bi prepoznao pravougaonike zadate boje na zadatoj slici.</p>
+      <hr>
+      <div class="row">
+        <div class="col-md-6">
+          <form class="form" method="POST" action="/detectRectangles" encType="multipart/form-data">
+            <div class="form-group">
+              <label>Izaberite ulaznu sliku:</label>
+              <input type="file" name="image">
+            </div>
+            <div class="form-group">
+              <label for="">Izaberite boju:</label>
+              <div class="input-group">
+                <div class="input-group-addon">R</div>
+                <input class="form-control" type="number" name="colorR" placeholder="255" value="255">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">G</div>
+                <input class="form-control" type="number" name="colorG" placeholder="255" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">B</div>
+                <input class="form-control" type="number" name="colorB" placeholder="255" value="0">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="">Dozvoljeno odstupanje boje:</label>
+              <input class="form-control" type="number" name="colorPercentage" placeholder="0.1" value="0.1">
+            </div>
+            <div class="form-group">
+              <label for="">Dozvoljeno odstupanje koordinata u pikselima:</label>
+              <input class="form-control" type="number" name="faultTolerance" placeholder="10" value="10">
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-primary">Obradi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <h1>Promena osvetljenja i kontrasta</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <form class="form" method="POST" action="/processImage" encType="multipart/form-data">
+            <div class="form-group">
+              <label>Izaberite ulaznu sliku:</label>
+              <input type="file" name="image">
+            </div>
+            <div class="form-group">
+              <label for="">Izaberite osvetljenje i kontrast:</label>
+              <div class="input-group">
+                <div class="input-group-addon">Osvetljenje</div>
+                <input class="form-control" type="number" name="brightness" placeholder="5" value="5">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Kontrast</div>
+                <input class="form-control" type="text" name="contrast" placeholder="3" value="3">
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary" id="detectRectanglesBtn">Obradi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <h1>Iscrtavanje kontura na slici</h1>
+      <div class="row">
+         <div class="col-md-6">
+          <form class="form" method="POST" action="/drawContours" encType="multipart/form-data">
+            <div class="form-group">
+              <label>Izaberite ulaznu sliku:</label>
+              <input type="file" name="image">
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Obradi</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+      $(function(){
+        $("#detectRectanglesBtn").click(function(){
+          $.post(URL, {}, displayRectResult);
+        });
+
+        var displayRectResult = function(result){
+
+        };
+
+        $("#processImageBtn").click(function(){
+          var URL = "";
+          $.post(URL, {
+
+          }, displayProcResult);
+        });
+
+        var displayProcResult = function(result){
+
+        }
+      });
+    </script>
+
+  </body>
+
+</html>
+
